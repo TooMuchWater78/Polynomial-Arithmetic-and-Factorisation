@@ -36,7 +36,6 @@ struct Polynomial
         end
 
         max_degree = maximum((t)->t.degree, vt)
-        max_degree > max_degree_allowed && error("Cannot create polynomial of degree greater than $max_degree_allowed. You are trying $max_degree.")
         terms = [zero(Term) for i in 0:max_degree] #First set all terms with zeros
 
         #now update based on the input terms
@@ -109,7 +108,6 @@ function rand(::Type{Polynomial} ;
         
     while true 
         _degree = degree == -1 ? rand(Poisson(mean_degree)) : degree
-        _degree = min(_degree, max_degree_allowed)
         _terms = terms == -1 ? rand(Binomial(_degree,prob_term)) : terms
         degrees = vcat(sort(sample(0:_degree-1,_terms,replace = false)),_degree)
         coeffs = rand(1:max_coeff,_terms+1)
@@ -190,8 +188,7 @@ evaluate(f::Polynomial, x::T) where T <: Number = sum(evaluate(t,x) for t in f)
 Push a new term into the polynomial.
 """
 #Note that ideally this would throw and error if pushing another term of degree that is already in the polynomial
-function push!(p::Polynomial, t::Term) 
-    t.degree > max_degree_allowed && error("Cannot create polynomial of degree greater than $max_degree_allowed. You are trying $(t.degree).")
+function push!(p::Polynomial, t::Term)
     if t.degree <= degree(p)
         p.terms[t.degree + 1] = t
     else

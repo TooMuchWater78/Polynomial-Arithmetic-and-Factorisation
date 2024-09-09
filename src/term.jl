@@ -37,9 +37,35 @@ one(::Type{Term})::Term = Term(1,0)
 ###########
 
 """
+Print a number in unicode superscript.
+"""
+function number_superscript(i::Int)
+    if i < 0
+        c = [Char(0x207B)]
+    else
+        c = []
+    end
+
+    for j in reverse(digits(abs(i)))
+        if j == 0
+            push!(c, Char(0x2070))
+        elseif j == 1
+            push!(c, Char(0x00B9))
+        elseif j == 2
+            push!(c, Char(0x00B2))
+        elseif j == 3
+            push!(c, Char(0x00B3))
+        else
+            push!(c, Char(0x2070+j))
+        end
+    end
+    return join(c)
+end
+
+"""
 Show a term.
 """
-show(io::IO, t::Term) = print(io, "$(t.coeff)⋅x^$(t.degree)") #\cdot + [TAB]
+show(io::IO, t::Term) = t.degree == 0 ? print(io, "$(t.coeff)") : print(io, "$(t.coeff)⋅x$(number_superscript(t.degree))") #\cdot + [TAB]
 
 ########################
 # Queries about a term #

@@ -12,7 +12,7 @@ import Base: %
 import Base: push!, pop!, iszero, show, isless, map, map!, iterate, length, last
 import Base: +, -, *, mod, %, ÷, ==, ^, rand, rem, zero, one
 
-lowest_to_highest = true
+lowest_to_highest = false
 
 include("src/general_alg.jl")
 include("src/term.jl")

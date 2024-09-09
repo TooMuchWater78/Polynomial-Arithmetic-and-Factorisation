@@ -129,9 +129,17 @@ function show(io::IO, p::Polynomial)
         print(io,"0")
     else
         n = length(p.terms)
-        for (i,t) in enumerate(p.terms)
-            if !iszero(t)
-                print(io, t, i != n ? " + " : "")
+        if isdefined(:lowest_to_highest) && lowest_to_highest == true
+            for (i,t) in enumerate(p.terms)
+                if !iszero(t)
+                    print(io, i == 1 ? t : (t.coeff < 0 ? " - $(string(t)[2:end])" : " + $t"))
+                end
+            end
+        else
+            for (i,t) in enumerate(reverse(p.terms))
+                if !iszero(t)
+                    print(io, i == 1 ? t : (t.coeff < 0 ? " - $(string(t)[2:end])" : " + $t"))
+                end
             end
         end
     end

@@ -41,12 +41,14 @@ Print a number in unicode superscript.
 """
 function number_superscript(i::Int)
     if i < 0
-        c = [Char(0x207B)]
+        c = [Char(0x207B)]  # superscript minus sign
     else
         c = []
     end
 
+    # digits separates the digits of i into an array in reverse order (right to left); this order must be reversed for correct printing
     for j in reverse(digits(abs(i)))
+        # 1, 2 and 3 do not follow the same unicode pattern as 4 onwards
         if j == 0
             push!(c, Char(0x2070))
         elseif j == 1

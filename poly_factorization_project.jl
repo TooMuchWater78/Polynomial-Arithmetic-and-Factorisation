@@ -15,8 +15,13 @@ import Base: +, -, *, mod, %, ÷, ==, ^, rand, rem, zero, one
 lowest_to_highest = false
 
 include("src/general_alg.jl")
+
+include("src/term_abstract.jl")
 include("src/term.jl")
+include("src/termBig.jl")
+
 include("src/polynomial.jl")
+include("src/polynomialBig.jl")
     include("src/basic_polynomial_operations/polynomial_addition.jl")
     include("src/basic_polynomial_operations/polynomial_multiplication.jl")
     include("src/basic_polynomial_operations/polynomial_division.jl")

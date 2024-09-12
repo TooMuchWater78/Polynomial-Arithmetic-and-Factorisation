@@ -9,10 +9,10 @@
 """
 The extended euclid algorithm for polynomials modulo prime.
 """
-function extended_euclid_alg(a::Polynomial, b::Polynomial, prime::Int)
+function extended_euclid_alg(a::P, b::P, prime::Int) where P <: AbsPoly
     old_r, r = mod(a, prime), mod(b, prime)
-    old_s, s = one(Polynomial), zero(Polynomial)
-    old_t, t = zero(Polynomial), one(Polynomial)
+    old_s, s = one(P), zero(P)
+    old_t, t = zero(P), one(P)
 
     while !iszero(mod(r,prime))
         q = first(divide(old_r, r)(prime))
@@ -29,4 +29,4 @@ end
 """
 The GCD of two polynomials modulo prime.
 """
-gcd(a::Polynomial, b::Polynomial, prime::Int) = extended_euclid_alg(a,b,prime) |> first
+gcd(a::AbsPoly, b::AbsPoly, prime::Int) = extended_euclid_alg(a,b,prime) |> first

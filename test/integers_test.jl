@@ -6,6 +6,14 @@
 #############################################################################
 #############################################################################
 
+"""
+Executes all integer tests in this file.
+"""
+function integers_tests()
+    test_euclid_ints()
+    test_ext_euclid_ints()
+    test_inverse_mod_ints()
+end
 
 """
 Tests Euclidean GCD algorithm for integers.

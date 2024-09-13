@@ -6,9 +6,9 @@
 #############################################################################
 #############################################################################
 
-####################################
+#######################################
 # PolynomialBig type and construction #
-####################################
+#######################################
 
 """
 A PolynomialBig type - designed to be for polynomials with integer coefficients.
@@ -21,7 +21,7 @@ struct PolynomialBig <: AbsPoly
     #for the zero polynomial where the vector is of length 1.
     #Note: at positions where the coefficient is 0, the power of the term is also 0 (this is how the TermBig type is designed)
     #The maximum length allowed for the vector is max_degree+1
-    terms::Vector{TermBig}   
+    terms::Vector{TermBig}
     
     #Inner constructor of 0 polynomial
     PolynomialBig() = new([zero(TermBig)])

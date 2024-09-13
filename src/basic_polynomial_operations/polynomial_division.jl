@@ -32,13 +32,25 @@ function divide(num::P, den::P) where P <: AbsPoly
     end
     return division_function
 end
+function divide(num::PolynomialModP, den::PolynomialModP)
+    @assert num.prime == den.prime
+    return divide(num.polynomial, den.polynomial)(num.prime)
+end
 
 """
 The quotient from polynomial division. Returns a function of an integer.
 """
 ÷(num::AbsPoly, den::AbsPoly)  = (p::Int) -> first(divide(num,den)(p))
+÷(num::PolynomialModP, den::PolynomialModP) = begin
+    @assert num.prime == den.prime
+    return ÷(num.polynomial, den.polynomial)(num.prime)
+end
 
 """
 The remainder from polynomial division. Returns a function of an integer.
 """
 rem(num::AbsPoly, den::AbsPoly)  = (p::Int) -> last(divide(num,den)(p))
+rem(num::PolynomialModP, den::PolynomialModP) = begin
+    @assert num.prime == den.prime
+    return rem(num.polynomial, den.polynomial)(num.prime)
+end

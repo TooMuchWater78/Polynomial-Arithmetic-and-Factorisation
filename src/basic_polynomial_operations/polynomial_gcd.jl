@@ -25,8 +25,15 @@ function extended_euclid_alg(a::P, b::P, prime::Int) where P <: AbsPoly
     @assert mod(s*a + t*b - g, prime) == 0
     return g, s, t  
 end
+extended_euclid_alg(a::PolynomialModP, b::PolynomialModP, prime::Int) = begin
+    return extended_euclid_alg(a.polynomial, b.polynomial, prime)
+end
 
 """
 The GCD of two polynomials modulo prime.
 """
 gcd(a::AbsPoly, b::AbsPoly, prime::Int) = extended_euclid_alg(a,b,prime) |> first
+function gcd(a::PolynomialModP, b::PolynomialModP)
+    @assert a.prime == b.prime
+    return (extended_euclid_alg(a, b, a.prime) |> first)
+end

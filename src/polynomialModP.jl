@@ -15,7 +15,7 @@ A PolynomialModP type - holds a Polynomial and a prime number.
 """
 struct PolynomialModP <: AbsPoly
     polynomial::Polynomial
-    primt::Integer
+    prime::Integer
 
     # Inner constructor of PolynomialModP
     function PolynomialModP(p::Polynomial, prime::Integer)

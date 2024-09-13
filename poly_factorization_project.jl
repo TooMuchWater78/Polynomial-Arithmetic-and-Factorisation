@@ -6,7 +6,7 @@
 #############################################################################
 #############################################################################
 
-using Distributions, StatsBase, Random
+using Distributions, StatsBase, Random, Primes
 
 import Base: %
 import Base: push!, pop!, iszero, show, isless, map, map!, iterate, length, last
@@ -22,6 +22,7 @@ include("src/termBig.jl")
 
 include("src/polynomial.jl")
 include("src/polynomialBig.jl")
+include("src/PolynomialModP.jl")
     include("src/basic_polynomial_operations/polynomial_addition.jl")
     include("src/basic_polynomial_operations/polynomial_multiplication.jl")
     include("src/basic_polynomial_operations/polynomial_division.jl")

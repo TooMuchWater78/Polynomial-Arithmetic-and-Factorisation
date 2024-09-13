@@ -13,6 +13,7 @@ Executes all extended euclidean algorithm tests in this file.
 function polynomial_ext_euclid_tests()
     ext_euclid_test_poly()
     ext_euclid_test_polyBig()
+    ext_euclid_test_polyModP()
 end
 
 """
@@ -41,4 +42,21 @@ function ext_euclid_test_polyBig(;prime::Int=101, N::Int = 10^3, seed::Int = 0)
         @assert mod(s*p1 + t*p2 - g, prime) == 0
     end
     println("ext_euclid_test_polyBig - PASSED")
+end
+
+"""
+Test the extended euclid algorithm for PolynomialModP.
+"""
+function ext_euclid_test_polyModP(; prime::Int=101, N::Int=10^3, seed::Int=0)
+    Random.seed!(seed)
+    for _ in 1:N
+        p1 = rand(PolynomialModP, p=prime)
+        p2 = rand(PolynomialModP, p=prime)
+        g, s, t = extended_euclid_alg(p1, p2, prime)
+        g = PolynomialModP(g, prime)
+        s = PolynomialModP(s, prime)
+        t = PolynomialModP(t, prime)
+        @assert s * p1 + t * p2 - g == 0
+    end
+    println("ext_euclid_test_polyModP - PASSED")
 end

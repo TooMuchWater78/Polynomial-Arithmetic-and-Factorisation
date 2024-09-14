@@ -283,12 +283,13 @@ Warning this may not make sense if n does not divide all the coefficients of p.
 ÷(p::P, n::Integer) where P <: AbsPoly = (prime)->P(map((pt)->((pt ÷ n)(prime)), p.terms))
 
 """
-Take the mod of a polynomial with an integer.
+Take the symmetric mod of a polynomial with an integer.
 """
-function mod(f::P, p::Int)::P where P <: AbsPoly
-    f_out = deepcopy(f)
+function mod(f::P, p::Integer)::P where P <: AbsPoly
+    f_out = P()
     for i in 1:length(f_out.terms)
-        f_out.terms[i] = mod(f_out.terms[i], p)
+        term = mod(f.terms[i], p)
+        !iszero(term) && push!(f_out, term)
     end
     return trim!(f_out)
 end

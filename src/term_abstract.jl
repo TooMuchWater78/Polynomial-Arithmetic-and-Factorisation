@@ -72,7 +72,7 @@ Multiply two terms.
 """
 Compute the symmetric mod of a term with an integer.
 """
-mod(t::T, p::Int) where T <: AbsTerm = T(mod(t.coeff,p), t.degree)
+mod(t::T, p::Integer) where T <: AbsTerm = T(mod(t.coeff,p), t.degree)
 
 """
 Compute the derivative of a term.

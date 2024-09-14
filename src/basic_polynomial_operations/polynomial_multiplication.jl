@@ -72,14 +72,14 @@ function *(p1::PolynomialBig, p2::PolynomialBig)::PolynomialBig  # implementatio
     c = (PolynomialModP(mod(p1, p), p) * PolynomialModP(mod(p2, p), p)).polynomial
 
     # Repeatedly calculates poly_crt until reaching the bound B from above
-    while M < Base
+    while M < B
         p = nextprime(p + 1)
         c_prime = (PolynomialModP(mod(p1, p), p) * PolynomialModP(mod(p2, p), p)).polynomial
         c = poly_crt(c, c_prime, M, p)
-        M *= p1
+        M *= p
     end
 
-    return smod(c, M)
+    return mod(c, M)
 end
 function *(p1::PolynomialModP, p2::PolynomialModP)
     @assert p1.prime == p2.prime

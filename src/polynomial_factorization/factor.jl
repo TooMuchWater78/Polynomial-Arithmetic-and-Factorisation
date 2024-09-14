@@ -39,12 +39,48 @@ function factor(f::P, prime::Int)::Vector{Tuple{AbsPoly,Int}} where P <: AbsPoly
         sp = dd_split(dd, k, prime)
         sp = map((p)->(p ÷ leading(p).coeff)(prime),sp) #makes the polynomials inside the list sp, monic
         for mp in sp
-            push!(ret_val, (mp, multiplicity(f_modp,mp,prime)) )
+            push!(ret_val, (mp, multiplicity(f_modp,mp,prime)))
         end
     end
 
     #Append the leading coefficient as well
-    push!(ret_val, (leading(f_modp).coeff* one(P), 1) )
+    push!(ret_val, (leading(f_modp).coeff* one(P), 1))
+
+    return ret_val
+end
+function factor(f::PolynomialModP)::Vector{Tuple{AbsPoly,Int}}
+    #Cantor Zassenhaus factorization
+
+    degree(f) ≤ 1 && return [(f,1)]
+
+    # make f primitive
+    ff = prim_part(f)      
+    # @show "after prim:", ff
+
+     # make f square-free
+    squares_poly = PolynomialModP(gcd(f, derivative(ff)), f.prime)
+    ff = PolynomialModP((ff ÷ squares_poly), f.prime)
+    # @show "after square free:", ff
+
+    # make f monic
+    old_coeff = leading(ff).coeff
+    ff = (ff ÷ old_coeff)      
+    # @show "after monic:", ff
+
+    dds = dd_factor(ff)
+
+    ret_val = Tuple{AbsPoly,Int}[]
+
+    for (k,dd) in enumerate(dds)
+        sp = dd_split(dd, k, f.prime)
+        sp = map((p)->(p ÷ leading(p).coeff)(f.prime),sp) #makes the polynomials inside the list sp, monic
+        for mp in sp
+            push!(ret_val, (mp, multiplicity(f.polynomial, mp, f.prime)))
+        end
+    end
+
+    #Append the leading coefficient as well
+    push!(ret_val, (leading(f).coeff* one(PolynomialModP, f.prime), 1))
 
     return ret_val
 end
@@ -89,6 +125,7 @@ function dd_factor(f::P, prime::Int)::Array{AbsPoly} where P <: AbsPoly
     
     return g
 end
+dd_factor(f::PolynomialModP) = dd_factor(f.polynomial, f.prime)
 
 """
 Distinct degree split.

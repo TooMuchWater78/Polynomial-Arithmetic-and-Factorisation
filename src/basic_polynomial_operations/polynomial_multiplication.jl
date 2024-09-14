@@ -91,13 +91,46 @@ Power of a polynomial.
 """
 function ^(p::AbsPoly, n::Int)::AbsPoly
     n < 0 && error("No negative power")
+    n == 0 && return one(p)
+
     out = one(p)
-    for _ in 1:n
-        out *= p
+    squares = p
+
+    # find truncated binary representation of the exponent; starts from the first 1 in the string
+    n_trunc_bin = reverse(bitstring(n)[findfirst('1', bitstring(n)):end])  # reverse for purposes of computation
+
+    # iterate through in reverse order
+    for (i, b) in enumerate(n_trunc_bin)
+        # square the given term in iteration and if bit (b) is 1, multiply out by the current value of squares
+        if parse(Int, b) == 1
+            out *= squares
+        end
+
+        squares *= squares
     end
+
     return out
 end
 function ^(p::PolynomialModP, n::Int)::PolynomialModP
-    return PolynomialModP(mod(^(p.polynomial, n), p.prime), p.prime)
+    n < 0 && error("No negative power")
+    n == 0 && return PolynomialModP(one(Polynomial), p.prime)
+
+    out = one(Polynomial)
+    squares = p.polynomial
+
+    # find truncated binary representation of the exponent; starts from the first 1 in the string
+    n_trunc_bin = reverse(bitstring(n)[findfirst('1', bitstring(n)):end])  # reverse for purposes of computation
+
+    # iterate through in reverse order
+    for (i, b) in enumerate(n_trunc_bin)
+        # square the given term in iteration and if bit (b) is 1, multiply out by the current value of squares
+        if parse(Int, b) == 1
+            out = mod(out * squares, p.prime)
+        end
+
+        squares = mod(squares * squares, p.prime)
+    end
+
+    return PolynomialModP(out, p.prime)
 end
 

@@ -18,6 +18,7 @@ include("polynomial_division_test.jl")
 include("polynomial_ext_euclid_test.jl")
 include("polynomial_overflow_test.jl")
 include("polynomial_product_test.jl")
+include("polynomial_power_test.jl")
 
 # Executes and times integer tests
 println("--- Integer tests ---")
@@ -46,3 +47,7 @@ polynomial_product_tests()
 # Executes and times polynomial overflow tests
 println("--- Polynomial overflow tests ---")
 polynomial_overflow_tests()
+
+# Executes and times polynomial power tests
+println("--- Polynomial power tests ---")
+polynomial_power_tests()

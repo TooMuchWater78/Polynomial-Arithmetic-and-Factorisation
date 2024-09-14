@@ -20,29 +20,29 @@ include("polynomial_overflow_test.jl")
 include("polynomial_product_test.jl")
 
 # Executes and times integer tests
-# println("--- Integer tests ---")
-# integers_tests()
+println("--- Integer tests ---")
+integers_tests()
 
 # Executes and times factorization tests
 println("--- Polynomial factorization tests ---")
 factorization_tests()
 
 # Executes and times polynomial derivative tests
-# println("--- Polynomial derivative tests ---")
-# polynomial_derivative_tests()
+println("--- Polynomial derivative tests ---")
+polynomial_derivative_tests()
 
-# # Executes and times polynomial division tests
-# println("--- Polynomial divison tests ---")
-# polynomial_division_tests()
+# Executes and times polynomial division tests
+println("--- Polynomial divison tests ---")
+polynomial_division_tests()
 
-# # Executes and times polynomial extended euclidean algorithm tests
-# println("--- Polynomial extended euclidean algorithm tests ---")
-# polynomial_ext_euclid_tests()
+# Executes and times polynomial extended euclidean algorithm tests
+println("--- Polynomial extended euclidean algorithm tests ---")
+polynomial_ext_euclid_tests()
 
-# # Executes and times polynomial product tests
-# println("--- Polynomial product tests ---")
-# polynomial_product_tests()
+# Executes and times polynomial product tests
+println("--- Polynomial product tests ---")
+polynomial_product_tests()
 
-# # Executes and times polynomial overflow tests
-# println("--- Polynomial overflow tests ---")
-# polynomial_overflow_tests()
+# Executes and times polynomial overflow tests
+println("--- Polynomial overflow tests ---")
+polynomial_overflow_tests()

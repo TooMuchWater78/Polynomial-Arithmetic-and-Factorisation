@@ -79,7 +79,7 @@ function *(p1::PolynomialBig, p2::PolynomialBig)::PolynomialBig  # implementatio
         M *= p
     end
 
-    return mod(c, M)
+    return smod(c, M)
 end
 function *(p1::PolynomialModP, p2::PolynomialModP)
     @assert p1.prime == p2.prime

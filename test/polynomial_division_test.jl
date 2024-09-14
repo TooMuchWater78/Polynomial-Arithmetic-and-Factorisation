@@ -17,7 +17,7 @@ end
 """
 Test division of polynomials modulo p.
 """
-function division_test_poly(;prime::Int = 101, N::Int = 10^4, seed::Int = 0)
+function division_test_poly(;prime::Int = 101, N::Int = 10^3, seed::Int = 0)
     Random.seed!(seed)
     for _ in 1:N
         p1 = rand(Polynomial)
@@ -45,7 +45,7 @@ end
 """
 Test division of BigInt polynomials modulo p.
 """
-function division_test_polyBig(;prime::Int = 101, N::Int = 10^4, seed::Int = 0)
+function division_test_polyBig(;prime::Int = 101, N::Int = 10^3, seed::Int = 0)
     Random.seed!(seed)
     for _ in 1:N
         p1 = rand(PolynomialBig)

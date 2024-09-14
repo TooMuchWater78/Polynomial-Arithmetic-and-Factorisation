@@ -59,3 +59,25 @@ function int_inverse_mod(a::Integer, m::Integer)::Integer
     end
     return mod(ext_euclid_alg(a,m)[2],m)
 end
+
+"""
+Symmetric mod.
+"""
+smod(a::Integer, m::Integer)::Integer = mod(a, m) <= m//2 ? mod(a, m) : mod(a, m) - m
+
+"""
+Chinese remainder theorem for integers uᵢ and coprime integers mᵢ.
+"""
+function int_crt(u::Vector{<:Integer}, m::Vector{<:Integer})
+    @assert length(m) == length(u)
+    v::Vector{Integer} = [u[1]]
+    m_prods::Vector{Integer} = [1]  # product of mᵢ's, which grows in each iteration
+
+    # generate mᵢ's in each iteration
+    for i in 1:length(m)-1
+        push!(v, (u[i+1] - sum(v[begin:i] .* m_prods)) * int_inverse_mod(*(m_prods...) * m[i], m[i+1]) % m[i+1])
+        push!(m_prods, *(m_prods...) * m[i])  # update with next product
+    end
+
+    return sum(v .* m_prods)
+end

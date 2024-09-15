@@ -152,13 +152,8 @@ Display a factorization.
 """
 function show(io::IO, f::Vector{Tuple{AbsPoly,Int}})
     for i in f
-        if (length(i[1]) == 1) && (i[1].terms[1].coeff == 0)
-            show(io, i[1])
-            i[2] == 1 ? nothing : print("$(number_superscript(i[2]))")
-        else
-            print("(") 
-            show(io, i[1])
-            i[2] == 1 ? print(")") : print(")$(number_superscript(i[2]))")
-        end
+        print("(")
+        show(io, i[1])
+        i[2] == 1 ? print(")") : print(")$(number_superscript(i[2]))")
     end
 end

@@ -111,7 +111,7 @@ function number_superscript(i::Int)
         c = []
     end
 
-    # digits separates the digits of i into an array in reverse order (right to left); this order must be reversed for correct printing
+    # 'digits' separates the digits of i into an array in reverse order (right to left); this order must be reversed for correct printing
     for j in reverse(digits(abs(i)))
         # 1, 2 and 3 do not follow the same unicode pattern as 4 onwards
         if j == 0

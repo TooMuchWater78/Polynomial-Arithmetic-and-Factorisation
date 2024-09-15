@@ -100,7 +100,7 @@ function ^(p::AbsPoly, n::Int)::AbsPoly
     n_trunc_bin = reverse(bitstring(n)[findfirst('1', bitstring(n)):end])  # reverse for purposes of computation
 
     # iterate through in reverse order
-    for (i, b) in enumerate(n_trunc_bin)
+    for b in n_trunc_bin
         # square the given term in iteration and if bit (b) is 1, multiply out by the current value of squares
         if parse(Int, b) == 1
             out *= squares
@@ -122,7 +122,7 @@ function ^(p::PolynomialModP, n::Int)::PolynomialModP
     n_trunc_bin = reverse(bitstring(n)[findfirst('1', bitstring(n)):end])  # reverse for purposes of computation
 
     # iterate through in reverse order
-    for (i, b) in enumerate(n_trunc_bin)
+    for b in n_trunc_bin
         # square the given term in iteration and if bit (b) is 1, multiply out by the current value of squares
         if parse(Int, b) == 1
             out = mod(out * squares, p.prime)

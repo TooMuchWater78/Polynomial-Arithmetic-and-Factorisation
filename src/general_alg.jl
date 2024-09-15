@@ -71,7 +71,7 @@ Chinese remainder theorem for integers uᵢ and coprime integers mᵢ.
 function int_crt(u::Vector{<:Integer}, m::Vector{<:Integer})
     @assert length(m) == length(u)
     v::Vector{Integer} = [u[1]]
-    m_prods::Vector{Integer} = [1]  # product of mᵢ's, which grows in each iteration
+    m_prods::Vector{Integer} = [1]  # product of mᵢ's
 
     # generate mᵢ's in each iteration
     for i in 1:length(m)-1

@@ -10,8 +10,8 @@
 Executes all polynomial factorization tests in this file.
 """
 function factorization_tests()
-    # @time factor_test_poly()
-    # @time factor_test_polyBig()
+    @time factor_test_poly()
+    @time factor_test_polyBig()
     @time big_factor_test_poly()
 end
 
@@ -56,7 +56,7 @@ end
 """
 Test factorization of large BigInt polynomial
 """
-function big_factor_test_poly(;N::Int = 10, seed::Int = 0, prime = 5)
+function big_factor_test_poly(;N::Int = 20, seed::Int = 0, prime = 5)
     Random.seed!(seed)
     prod = PolynomialBig(TermBig(1,0))
     p_base = PolynomialBig(TermBig(1,0))

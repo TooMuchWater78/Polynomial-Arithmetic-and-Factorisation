@@ -1,8 +1,10 @@
-# 2504_2024_project1 - Polynomial Factorization
+# 2504_2024_project1 - Trisztan Harai - Polynomial Factorization
+
+Student Number: 47483073
 
 This project implements polynomial arithmetic and polynomial factorization for polynomials with integer coefficients. 
 
-Students are supposed to create a mirror of the project and create their modifications and improvements according [Project1 description](https://courses.smp.uq.edu.au/MATH2504/2024/assessment_html/project1.html). This repository is similar to repositories of previous years, yet has some differences.
+[Assignment Instructions](https://courses.smp.uq.edu.au/MATH2504/2024/assessment_html/project1.html).
 
 To load all functionality, in the directory of the repo:
 
@@ -30,4 +32,4 @@ To execute all unit tests run:
 julia> include("test/runtests.jl")
 ```
 
-You may see examples in `example_script.jl` and run that script line by line.
+You may see examples of functionality in `example_script_2.jl`.

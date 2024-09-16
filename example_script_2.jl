@@ -20,6 +20,10 @@ p2 = 3x^3 + 14x^2 + 5
 println("p₁ = ", p1)
 println("p₂ = ", p2)
 
+println("Creating a random `PolynomialModP`:")
+
+println("p₃ = $(rand(PolynomialModP, p = 3))")
+
 println("We can perform all basic arithmetic operations on these polynomials that one would expect.")
 println("Addition:")
 println("p₁ + p₂ = ", p1 + p2)

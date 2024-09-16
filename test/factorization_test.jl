@@ -10,14 +10,15 @@
 Executes all polynomial factorization tests in this file.
 """
 function factorization_tests()
-    factor_test_poly()
-    factor_test_polyBig()
+    # @time factor_test_poly()
+    # @time factor_test_polyBig()
+    @time big_factor_test_poly()
 end
 
 """
 Test factorization of polynomials.
 """
-function factor_test_poly(;N::Int = 5, seed::Int = 0, primes::Vector{Int} = [5,7,23])
+function factor_test_poly(;N::Int = 10, seed::Int = 0, primes::Vector{Int} = [5,17,19])
     Random.seed!(seed)
     for prime in primes
         print("\ndoing prime = $prime \t")
@@ -36,7 +37,7 @@ end
 """
 Test factorization of BigInt polynomials.
 """
-function factor_test_polyBig(;N::Int = 5, seed::Int = 0, primes::Vector{Int} = [5,7,23])
+function factor_test_polyBig(;N::Int = 10, seed::Int = 0, primes::Vector{Int} = [5,17,19])
     Random.seed!(seed)
     for prime in primes
         print("\ndoing prime = $prime \t")
@@ -50,4 +51,25 @@ function factor_test_polyBig(;N::Int = 5, seed::Int = 0, primes::Vector{Int} = [
     end
 
     println("\nfactor_test_polyBig - PASSED")
+end
+
+"""
+Test factorization of large BigInt polynomial
+"""
+function big_factor_test_poly(;N::Int = 10, seed::Int = 0, prime = 5)
+    Random.seed!(seed)
+    prod = PolynomialBig(TermBig(1,0))
+    p_base = PolynomialBig(TermBig(1,0))
+    for _ in 1:N
+        p = rand(PolynomialBig)
+        prod = p_base*p
+        @assert leading(prod) == leading(p_base)*leading(p)
+        p_base = prod
+    end
+    @show prod
+    factorization = factor(prod, prime)
+    pr = mod(expand_factorization(factorization),prime)
+    @assert mod(prod-pr,prime) == 0
+
+    println("big_factor_test_poly - PASSED")
 end

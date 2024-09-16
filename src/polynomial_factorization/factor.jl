@@ -48,7 +48,7 @@ function factor(f::P, prime::Int)::Vector{Tuple{AbsPoly,Int}} where P <: AbsPoly
 
     return ret_val
 end
-function factor(f::PolynomialModP)::Vector{Tuple{AbsPoly,Int}}
+function factor(f::PolynomialModP)::Vector{Tuple{PolynomialModP,Int}}
     #Cantor Zassenhaus factorization
 
     degree(f) ≤ 1 && return [(f,1)]

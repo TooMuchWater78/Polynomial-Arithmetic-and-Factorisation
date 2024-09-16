@@ -14,11 +14,11 @@
 A PolynomialModP type - holds a Polynomial and a prime number.
 """
 struct PolynomialModP <: AbsPoly
-    polynomial::Polynomial
+    polynomial::AbsPoly
     prime::Integer
 
     # Inner constructor of PolynomialModP
-    function PolynomialModP(p::Polynomial, prime::Integer)
+    function PolynomialModP(p::AbsPoly, prime::Integer)
         @assert isprime(prime)
         terms = map((term) -> Term(mod(term.coeff, prime), term.degree), p.terms)
         p = Polynomial(terms)

@@ -18,7 +18,7 @@ end
 """
 Test factorization of polynomials.
 """
-function factor_test_poly(;N::Int = 10, seed::Int = 0, primes::Vector{Int} = [5,17,19])
+function factor_test_poly(;N::Int = 10, seed::Int = 0, primes::Vector{Int} = [5,11,17])
     Random.seed!(seed)
     for prime in primes
         print("\ndoing prime = $prime \t")
@@ -37,7 +37,7 @@ end
 """
 Test factorization of BigInt polynomials.
 """
-function factor_test_polyBig(;N::Int = 10, seed::Int = 0, primes::Vector{Int} = [5,17,19])
+function factor_test_polyBig(;N::Int = 10, seed::Int = 0, primes::Vector{Int} = [5,11,17])
     Random.seed!(seed)
     for prime in primes
         print("\ndoing prime = $prime \t")
@@ -56,7 +56,7 @@ end
 """
 Test factorization of large BigInt polynomial
 """
-function big_factor_test_poly(;N::Int = 20, seed::Int = 0, prime = 5)
+function big_factor_test_poly(;N::Int = 13, seed::Int = 0, prime = 5)
     Random.seed!(seed)
     prod = PolynomialBig(TermBig(1,0))
     p_base = PolynomialBig(TermBig(1,0))

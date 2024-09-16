@@ -56,7 +56,7 @@ end
 """
 Test factorization of large BigInt polynomial
 """
-function big_factor_test_poly(;N::Int = 16, seed::Int = 0, prime = 5)
+function big_factor_test_poly(;N::Int = 13, seed::Int = 0, prime = 17)
     Random.seed!(seed)
     prod = PolynomialBig(TermBig(1,0))
     p_base = PolynomialBig(TermBig(1,0))

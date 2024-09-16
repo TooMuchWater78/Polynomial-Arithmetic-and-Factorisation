@@ -326,7 +326,7 @@ function pow_mod(p::P, n::Int, prime::Int) where P <: AbsPoly
             out = mod(out * squares, prime)
         end
 
-        squares *= squares
+        squares = mod(squares * squares, prime)
     end
 
     return out

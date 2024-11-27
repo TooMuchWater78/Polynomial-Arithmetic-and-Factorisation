@@ -1,7 +1,5 @@
 # Polynomial Airthmetic and Factorization
 
-Student Number: 47483073
-
 This project implements polynomial arithmetic and polynomial factorization for polynomials with integer coefficients. 
 
 [Assignment Instructions](https://courses.smp.uq.edu.au/MATH2504/2024/assessment_html/project1.html).

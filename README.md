@@ -1,4 +1,4 @@
-# 2504_2024_project1 - Trisztan Harai - Polynomial Factorization
+# Polynomial Airthmetic and Factorization
 
 Student Number: 47483073
 
